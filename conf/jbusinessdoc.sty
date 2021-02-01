@@ -1,0 +1,91 @@
+%
+% @author: h1g0
+% @github: https://github.com/h1g0/latex_jbusinessdoc
+%
+% edited by sharo_jef
+%
+
+% ヘッダ定義
+\makeatletter
+\def\@documentnumber{}
+\def\documentnumber#1{\gdef\@documentnumber{{#1}}}
+\def\@destination{}
+\def\destination#1{\gdef\@destination{{#1}}}
+\renewcommand{\@maketitle}{
+    \newpage
+    % 文書番号（もしあれば）＋日付
+    \begin{flushright}
+    \if{\begingroup \@documentnumber \endgroup}{}
+    \else
+    \@documentnumber \par
+    \fi
+    \@date
+    \end{flushright}
+    \vspace{1.0zh}
+    % 宛先
+    \@destination
+    \vspace{1.0zh}
+    % 作成者
+    \begin{flushright}
+    \@author
+    \end{flushright}
+    \bigskip
+    % タイトル
+    \begin{center}
+        {\Large \@title}
+    \end{center}
+    \bigskip
+}
+\makeatother
+% ヘッダ定義終了
+
+% 前略 草々 を出力するzenryaku環境
+\newenvironment{zenryaku}{
+    \noindent 前略 \par
+}{
+    \begin{flushright}
+        草々
+    \end{flushright}
+    \par
+}
+
+% 拝啓 敬具 を出力するhaikei環境
+\newenvironment{haikei}{
+    \noindent 拝啓 \par
+}{
+    \begin{flushright}
+        敬具
+    \end{flushright}
+    \par
+}
+
+% 謹啓 謹白 を出力するkinkei環境
+\newenvironment{kinkei}{
+    \noindent 謹啓 \par
+}{
+    \begin{flushright}
+        謹白
+    \end{flushright}
+    \par
+}
+
+% 記 以上 を定義するkigaki環境
+\newenvironment{kigaki}{
+    \vspace{1.0zh}
+    \begin{center}
+        記
+    \end{center}
+    \par
+}{
+    \vspace{1.0zh}
+    \begin{flushright}
+        以 上
+    \end{flushright}
+    \par
+}
+
+% ページ番号を出力しない
+\pagestyle{empty}
+
+\newcommand{\jikou}{時下ますますご清栄のこととお慶び申し上げます。}
+\newcommand{\kansha}{平素は格別のご高配を賜り、厚く御礼申し上げます。}
